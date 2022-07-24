@@ -9,22 +9,16 @@ public class PracticeJava17 {
 
     public void testTestBlocks() {
         System.out.println("""
-                At least this works as expected!
+                At least this works as expected!    
                 Hey, having new line is no problem!!
                 """);
     }
 
     public void testNulls() {
-
         String nullString = null;
         String nonNullString = "A";
         String anotherNull = null;
         System.out.println(nullString.toLowerCase() + nonNullString.toLowerCase() + anotherNull.toUpperCase());
-    }
-
-    public void testNonNullWebflux() {
-        List<String> strings = Arrays.asList("a", "b", null, "c");
-        Flux.just(strings).doOnNext(e -> e.stream().map(k -> String.valueOf(null).toUpperCase())).blockLast();
     }
 
     public int testSwitchExpressions(String day) {

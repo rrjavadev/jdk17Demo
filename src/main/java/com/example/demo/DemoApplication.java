@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.lombok.Account;
+import com.example.demo.lombok.AccountMapper;
+import com.example.demo.lombok.AccountTransferObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

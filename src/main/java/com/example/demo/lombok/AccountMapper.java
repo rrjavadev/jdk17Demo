@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.lombok;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

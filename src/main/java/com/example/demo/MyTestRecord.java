@@ -2,13 +2,13 @@ package com.example.demo;
 
 import lombok.NonNull;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public record MyTestRecord(@NonNull String name, @NonNull String houseNumber) {
-//    public MyTestRecord{
-//       if (Objects.isNull(name) ||
-//        Objects.isNull(houseNumber)) {
-//           throw new NullPointerException();
-//       }
-//    }
+ record MyTestRecord(String name, String houseNumber) implements Serializable {
+    MyTestRecord {
+//        if (Objects.isNull(name) || Objects.isNull(houseNumber)) {
+//            throw new IllegalArgumentException("Null not accepted!");
+//        }
+    }
 }

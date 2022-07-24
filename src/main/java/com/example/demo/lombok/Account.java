@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.lombok;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,10 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class AccountTransferObject {
-
-
-    private int id;
+public class Account {
 
     /**
      * SVB bank account number originating the ACH transfer.
@@ -38,6 +35,7 @@ public class AccountTransferObject {
      * statements. Will be null until the transfer reaches processing status
      */
     private String batchId;
+
 
 }
 

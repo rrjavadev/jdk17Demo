@@ -22,14 +22,7 @@ class PracticeJava17Test {
     @Test
     public void testNull() {
         unit.testNulls();
-        unit.testNonNullWebflux();
     }
-
-    @Test
-    public void testNullWebFlux() {
-        unit.testNonNullWebflux();
-    }
-
     @Test
     public void testSwitchExpressions() {
         assertThat(unit.testSwitchExpressions("MONDAY")).isZero();
