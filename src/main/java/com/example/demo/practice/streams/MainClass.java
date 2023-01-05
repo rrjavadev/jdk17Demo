@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -38,7 +39,10 @@ public class MainClass {
         System.out.println(groupPeopleByNameAndReturnAListOfAges());
         //{Batman=[9], Kitty=[4], Nancy=[22, 25], Cathy=[23], Sara=[20], Chinnu=[1], Cinderella=[10]}
 
-        System.out.println(groupPeopleByNameAndReturnCountOfNames());
+        System.out.println(groupPeopleByNameAndReturnCountOfNamesInLong());
+        //{Batman=1, Kitty=1, Nancy=2, Cathy=1, Sara=1, Chinnu=1, Cinderella=1}
+
+        System.out.println(groupPeopleByNameAndReturnCountOfNamesInInt());
         //{Batman=1, Kitty=1, Nancy=2, Cathy=1, Sara=1, Chinnu=1, Cinderella=1}
     }
 
@@ -80,8 +84,13 @@ public class MainClass {
                 .collect(groupingBy(Person::name, mapping(Person::age, toList())));
     }
 
-    public static Map<String, Long> groupPeopleByNameAndReturnCountOfNames() {
+    public static Map<String, Long> groupPeopleByNameAndReturnCountOfNamesInLong() {
         return getPeople().stream()
                 .collect(groupingBy(Person::name, counting()));
+    }
+
+    public static Map<String, Integer> groupPeopleByNameAndReturnCountOfNamesInInt() {
+        return getPeople().stream()
+                .collect(groupingBy(Person::name, collectingAndThen(counting(), Long::intValue)));
     }
 }
