@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.partitioningBy;
@@ -36,6 +37,9 @@ public class MainClass {
 
         System.out.println(groupPeopleByNameAndReturnAListOfAges());
         //{Batman=[9], Kitty=[4], Nancy=[22, 25], Cathy=[23], Sara=[20], Chinnu=[1], Cinderella=[10]}
+
+        System.out.println(groupPeopleByNameAndReturnCountOfNames());
+        //{Batman=1, Kitty=1, Nancy=2, Cathy=1, Sara=1, Chinnu=1, Cinderella=1}
     }
 
     public static List<Person> getPeople() {
@@ -74,5 +78,10 @@ public class MainClass {
     public static Map<String, List<Integer>> groupPeopleByNameAndReturnAListOfAges() {
         return getPeople().stream()
                 .collect(groupingBy(Person::name, mapping(Person::age, toList())));
+    }
+
+    public static Map<String, Long> groupPeopleByNameAndReturnCountOfNames() {
+        return getPeople().stream()
+                .collect(groupingBy(Person::name, counting()));
     }
 }
