@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
 
 public class MainClass {
@@ -14,6 +15,7 @@ public class MainClass {
         System.out.println(getOddAge());
         System.out.println(getEvenAge());
         System.out.println(getByUsingPartitioningByForEvenAndOddAges());
+        System.out.println(groupPeopleBasedOnTheirNames());
     }
 
     public static List<Person> getPeople() {
@@ -23,6 +25,7 @@ public class MainClass {
                 new Person("Chinnu", 1),
                 new Person("Kitty", 4),
                 new Person("Batman", 9),
+                new Person("Nancy", 25),
                 new Person("Cinderella", 10));
     }
 
@@ -41,5 +44,10 @@ public class MainClass {
     public static Map<Boolean, List<Person>> getByUsingPartitioningByForEvenAndOddAges() {
         return getPeople().stream()
                 .collect(partitioningBy(person -> person.age() % 2 == 0));
+    }
+
+    public static Map<String, List<Person>> groupPeopleBasedOnTheirNames(){
+        return getPeople().stream()
+                .collect(groupingBy(Person::name));
     }
 }
