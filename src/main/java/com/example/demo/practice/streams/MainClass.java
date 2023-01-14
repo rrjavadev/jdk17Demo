@@ -1,10 +1,12 @@
 package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
+import org.apache.el.stream.Stream;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
@@ -44,6 +46,8 @@ public class MainClass {
 
         System.out.println(groupPeopleByNameAndReturnCountOfNamesInInt());
         //{Batman=1, Kitty=1, Nancy=2, Cathy=1, Sara=1, Chinnu=1, Cinderella=1}
+
+        System.out.println(getSumOfSqrts(500000));
     }
 
     public static List<Person> getPeople() {
@@ -92,5 +96,21 @@ public class MainClass {
     public static Map<String, Integer> groupPeopleByNameAndReturnCountOfNamesInInt() {
         return getPeople().stream()
                 .collect(groupingBy(Person::name, collectingAndThen(counting(), Long::intValue)));
+    }
+
+    private static boolean isPrime(int number){
+        return number > 1 && IntStream.range(2, number)
+                .noneMatch(e -> number % e == 0 );
+    }
+
+    // the sum of square root of prime numbers from 2 to a given number
+    public static double getSumOfSqrts(int number){
+        return IntStream.rangeClosed(0, number)
+                .boxed()
+                .parallel()
+                .filter(MainClass::isPrime)
+                .mapToDouble(e -> e)
+                .map(Math::sqrt)
+                .reduce(0.0, Double::sum);
     }
 }
