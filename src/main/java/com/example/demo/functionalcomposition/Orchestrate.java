@@ -1,4 +1,4 @@
-package com.example.demo.functioncomposition;
+package com.example.demo.functionalcomposition;
 
 import java.util.Arrays;
 import java.util.function.Function;

@@ -1,4 +1,4 @@
-package com.example.demo.functioncomposition;
+package com.example.demo.functionalcomposition;
 
 public class Fries implements Food{
     @Override
