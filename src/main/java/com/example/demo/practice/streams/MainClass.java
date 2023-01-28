@@ -1,10 +1,10 @@
 package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
-import org.apache.el.stream.Stream;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -48,6 +48,8 @@ public class MainClass {
         //{Batman=1, Kitty=1, Nancy=2, Cathy=1, Sara=1, Chinnu=1, Cinderella=1}
 
         System.out.println(getSumOfSqrts(500000));
+
+        System.out.println(firstEvenNumber());
     }
 
     public static List<Person> getPeople() {
@@ -98,13 +100,13 @@ public class MainClass {
                 .collect(groupingBy(Person::name, collectingAndThen(counting(), Long::intValue)));
     }
 
-    private static boolean isPrime(int number){
+    private static boolean isPrime(int number) {
         return number > 1 && IntStream.range(2, number)
-                .noneMatch(e -> number % e == 0 );
+                .noneMatch(e -> number % e == 0);
     }
 
     // the sum of square root of prime numbers from 2 to a given number
-    public static double getSumOfSqrts(int number){
+    public static double getSumOfSqrts(int number) {
         return IntStream.rangeClosed(0, number)
                 .boxed()
                 .parallel()
@@ -112,5 +114,26 @@ public class MainClass {
                 .mapToDouble(e -> e)
                 .map(Math::sqrt)
                 .reduce(0.0, Double::sum);
+    }
+
+    private static Integer firstEvenNumber() {
+
+        return IntStream.rangeClosed(1, 10)
+                .filter(e -> e % 2 == 0)
+                .map(e -> e * 2)
+                .findFirst()
+                .orElse(0);
+    }
+
+    private static long countNumberOfPersonNamesStartsWithA() {
+        return getPeople().stream()
+                .filter(e -> e.name().toUpperCase().startsWith("A"))
+                .count();
+    }
+
+    private List<String> removeAllEmptyStrings(List<String> strings){
+        return strings.stream()
+                .filter(s -> Objects.nonNull(s) && s.isEmpty())
+                .collect(toList());
     }
 }
