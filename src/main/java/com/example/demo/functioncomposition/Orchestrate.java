@@ -6,6 +6,7 @@ import java.util.function.Function;
 public class Orchestrate {
     final Function<FoodItem, FoodItem> foodItemFunction;
 
+    @SafeVarargs
     public Orchestrate(Function<FoodItem, FoodItem>... foodItems) {
         foodItemFunction = Arrays.stream(foodItems)
                 .reduce(Function.identity(), Function::andThen);
