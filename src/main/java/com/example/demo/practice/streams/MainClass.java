@@ -2,12 +2,14 @@ package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
 
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -50,6 +52,8 @@ public class MainClass {
         System.out.println(getSumOfSqrts(500000));
 
         System.out.println(firstEvenNumber());
+
+        System.out.println(getCountOfAllNumbers(Arrays.asList(1, 3, 5)));
     }
 
     public static List<Person> getPeople() {
@@ -133,7 +137,38 @@ public class MainClass {
 
     private List<String> removeAllEmptyStrings(List<String> strings){
         return strings.stream()
-                .filter(s -> Objects.nonNull(s) && s.isEmpty())
+                .filter(s -> nonNull(s) && s.isEmpty())
                 .collect(toList());
+    }
+    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings){
+        return strings.stream()
+                .filter(e -> nonNull(e) && e.length() >2)
+                .collect(toList());
+    }
+
+    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings){
+        return strings.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.joining(","));
+    }
+
+    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers){
+
+        return numbers.stream()
+                .distinct()
+                .map(e -> e * e)
+                .collect(toList());
+    }
+
+    private static Integer getCountOfAllNumbers(List<Integer> numbers){
+        return numbers.stream()
+                .reduce(0, Integer::sum);
+    }
+
+    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers){
+
+        return numbers.stream()
+                .mapToInt(e -> e)
+                .summaryStatistics();
     }
 }
