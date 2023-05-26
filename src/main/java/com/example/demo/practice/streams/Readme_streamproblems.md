@@ -12,7 +12,7 @@
 
 7. Given a list of strings, find the number of occurrences of each distinct word and display the word along with its count.
 
-Given a list of products, find the top 3 products with the highest prices.
+8. Given a list of products, find the top 3 products with the highest prices.
 
 Given a list of employees, group them by department and calculate the average salary for each department.
 

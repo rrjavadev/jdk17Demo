@@ -3,6 +3,7 @@ package com.example.demo.practice.streams;
 import com.example.demo.model.Person;
 import com.example.demo.practice.streams.model.Book;
 import com.example.demo.practice.streams.model.Order;
+import com.example.demo.practice.streams.model.Product;
 import com.example.demo.practice.streams.model.Transaction;
 
 import java.time.Instant;
@@ -18,8 +19,11 @@ import java.util.stream.IntStream;
 
 import static java.lang.String.valueOf;
 import static java.time.Duration.ofDays;
+import static java.util.Comparator.comparing;
 import static java.util.Currency.getInstance;
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.summingDouble;
@@ -41,6 +45,25 @@ public class StreamProblems2 {
         System.out.println(getSumOfSquares(getAListOfIntegersInRange(1, 10)));
 
         System.out.println(getNumberOfOccurrencesOfEachDistinctWordAndCount(getWords()));
+
+        System.out.println(getTopNProducts(getProducts(), 3));
+    }
+
+    private static List<Product> getProducts() {
+        return List.of(new Product("Apple", 4),
+                new Product("Orange", 10),
+                new Product("Cucumber", 1));
+    }
+
+    /**
+     * Given a list of products, find the top 3 products with the highest prices
+     */
+    public static List<Product> getTopNProducts(List<Product> products, int maxSize) {
+
+        return products.stream()
+                .sorted(comparing(Product::getPrice).reversed())
+                .limit(maxSize)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -100,7 +123,7 @@ public class StreamProblems2 {
     public static Book getBookWithHighestRating(List<Book> books) {
 
         return books.stream()
-                .max(Comparator.comparing(Book::getRating))
+                .max(comparing(Book::getRating))
                 .orElse(null);
 
     }
@@ -173,7 +196,7 @@ public class StreamProblems2 {
                 .filter(Objects::nonNull)
                 .map(String::toLowerCase)
                 .filter(string -> "aeiou".contains(valueOf(string.charAt(0))))
-                .max(Comparator.comparing(String::length))
+                .max(comparing(String::length))
                 .orElse("Vowel not found!!");
     }
 }
