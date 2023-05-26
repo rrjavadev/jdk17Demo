@@ -10,7 +10,7 @@
 
 6. Given a list of integers, find the sum of the squares of all even numbers.
 
-Given a list of strings, find the number of occurrences of each distinct word and display the word along with its count.
+7. Given a list of strings, find the number of occurrences of each distinct word and display the word along with its count.
 
 Given a list of products, find the top 3 products with the highest prices.
 
