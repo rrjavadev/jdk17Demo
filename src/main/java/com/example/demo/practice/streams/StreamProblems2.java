@@ -45,7 +45,6 @@ public class StreamProblems2 {
     public static Double getTotalRevenueGenerated(List<Order> orders) {
 
         return orders.stream()
-                .filter(order -> between(Instant.parse("2023-05-27T10:15:30.00Z"), order.getDate()).toDays() <= 30)
                 .filter(order -> order.getDate().isAfter(Instant.parse("2023-05-27T10:15:30.00Z")
                         .minus(ofDays(30))))
                 .mapToDouble(Order::getAmount)
