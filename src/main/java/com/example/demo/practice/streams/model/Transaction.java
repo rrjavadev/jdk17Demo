@@ -1,9 +1,8 @@
-package com.example.demo.practice.streams.Transaction;
+package com.example.demo.practice.streams.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Currency;
 
 @Data

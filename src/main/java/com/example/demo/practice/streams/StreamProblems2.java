@@ -1,7 +1,8 @@
 package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
-import com.example.demo.practice.streams.Transaction.Transaction;
+import com.example.demo.practice.streams.model.Book;
+import com.example.demo.practice.streams.model.Transaction;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,6 +26,27 @@ public class StreamProblems2 {
         System.out.println(getTotalSumOfTransactions(getTransactions()));
 
         System.out.println(getLongestWordStartingWithVowel(getWords()));
+
+        System.out.println(getBookWithHighestRating(getBooks()));
+    }
+
+    /**
+     * Given a list of books, find the book with the highest rating and display its title and author.
+     * @return
+     */
+    public static Book getBookWithHighestRating(List<Book> books){
+
+        return books.stream()
+                .max(Comparator.comparing(Book::getRating))
+                .orElse(null);
+
+    }
+
+    private static List<Book> getBooks(){
+        return Arrays.asList(new Book("book 1", "Author 1", 1),
+                new Book("book 2", "Author 2", 1),
+                new Book("book 3", "Author 3", 5),
+                new Book("book 4", "Author 4", 2));
     }
 
     public static List<String> getWords() {
