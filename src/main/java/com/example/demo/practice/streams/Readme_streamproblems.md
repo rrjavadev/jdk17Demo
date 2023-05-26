@@ -2,7 +2,7 @@
 
 2. Given a list of transactions, find the total sum of transactions for each distinct currency.
 
-Given a list of words, find the longest word that starts with a vowel.
+3. Given a list of words, find the longest word that starts with a vowel.
 
 Given a list of books, find the book with the highest rating and display its title and author.
 
