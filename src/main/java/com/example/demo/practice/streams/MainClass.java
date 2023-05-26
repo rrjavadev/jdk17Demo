@@ -54,6 +54,8 @@ public class MainClass {
         System.out.println(firstEvenNumber());
 
         System.out.println(getCountOfAllNumbers(Arrays.asList(1, 3, 5)));
+
+        System.out.println(getAverageAge(getPeople()));
     }
 
     public static List<Person> getPeople() {
@@ -65,6 +67,20 @@ public class MainClass {
                 new Person("Batman", 9),
                 new Person("Nancy", 25),
                 new Person("Cinderella", 10));
+    }
+
+    /**
+     * Find the average age of all people in a list of Person objects.
+     *
+     * @return
+     */
+    public static double getAverageAge(List<Person> people) {
+
+        return people.stream()
+                .mapToDouble(Person::age)
+                .peek(e -> System.out.println(e))
+                .average()
+                .orElse(0);
     }
 
     public static List<Person> getOddAge() {
@@ -135,24 +151,25 @@ public class MainClass {
                 .count();
     }
 
-    private List<String> removeAllEmptyStrings(List<String> strings){
+    private List<String> removeAllEmptyStrings(List<String> strings) {
         return strings.stream()
                 .filter(s -> nonNull(s) && s.isEmpty())
                 .collect(toList());
     }
-    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings){
+
+    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings) {
         return strings.stream()
-                .filter(e -> nonNull(e) && e.length() >2)
+                .filter(e -> nonNull(e) && e.length() > 2)
                 .collect(toList());
     }
 
-    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings){
+    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings) {
         return strings.stream()
                 .map(String::toUpperCase)
                 .collect(Collectors.joining(","));
     }
 
-    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers){
+    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers) {
 
         return numbers.stream()
                 .distinct()
@@ -160,12 +177,12 @@ public class MainClass {
                 .collect(toList());
     }
 
-    private static Integer getCountOfAllNumbers(List<Integer> numbers){
+    private static Integer getCountOfAllNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .reduce(0, Integer::sum);
     }
 
-    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers){
+    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers) {
 
         return numbers.stream()
                 .mapToInt(e -> e)
