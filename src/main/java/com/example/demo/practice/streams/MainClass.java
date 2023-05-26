@@ -1,20 +1,24 @@
 package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
+import com.example.demo.practice.streams.Transaction.Transaction;
 
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.Currency.getInstance;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.summingDouble;
 import static java.util.stream.Collectors.toList;
 
 public class MainClass {
@@ -56,6 +60,8 @@ public class MainClass {
         System.out.println(getCountOfAllNumbers(Arrays.asList(1, 3, 5)));
 
         System.out.println(getAverageAge(getPeople()));
+
+        System.out.println(getTotalSumOfTransactions(getTransactions()));
     }
 
     public static List<Person> getPeople() {
@@ -67,6 +73,16 @@ public class MainClass {
                 new Person("Batman", 9),
                 new Person("Nancy", 25),
                 new Person("Cinderella", 10));
+    }
+
+    public static List<Transaction> getTransactions() {
+        return       Arrays.asList(
+                new Transaction(getInstance("GBP"), 100.50),
+                new Transaction(getInstance("EUR"), 75.25),
+                new Transaction(getInstance("USD"), 50.75),
+                new Transaction(getInstance("GBP"), 150.00),
+                new Transaction(getInstance("EUR"), 125.50)
+        );
     }
 
     /**
@@ -81,6 +97,18 @@ public class MainClass {
                 .peek(e -> System.out.println(e))
                 .average()
                 .orElse(0);
+    }
+
+    /**
+     * Given a list of transactions, find the total sum of transactions for each distinct currency.
+     *
+     * @return
+     */
+    public static Map<Currency, Double> getTotalSumOfTransactions(List<Transaction> transactions) {
+
+        return transactions.stream()
+                .collect(groupingBy(Transaction::getCurrency, summingDouble(Transaction::getAmount)));
+
     }
 
     public static List<Person> getOddAge() {

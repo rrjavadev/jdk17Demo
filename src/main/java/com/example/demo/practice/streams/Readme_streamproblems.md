@@ -1,6 +1,6 @@
-Find the average age of all employees in a list of Employee objects.
+1. Find the average age of all employees in a list of Employee objects.
 
-Given a list of transactions, find the total sum of transactions for each distinct currency.
+2. Given a list of transactions, find the total sum of transactions for each distinct currency.
 
 Given a list of words, find the longest word that starts with a vowel.
 
