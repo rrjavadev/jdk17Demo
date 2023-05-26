@@ -5,19 +5,17 @@ import com.example.demo.practice.streams.model.Book;
 import com.example.demo.practice.streams.model.Order;
 import com.example.demo.practice.streams.model.Transaction;
 
-import java.time.Duration;
 import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.temporal.TemporalAmount;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.lang.String.valueOf;
-import static java.time.Duration.between;
 import static java.time.Duration.ofDays;
 import static java.util.Currency.getInstance;
 import static java.util.stream.Collectors.groupingBy;
@@ -37,6 +35,27 @@ public class StreamProblems2 {
         System.out.println(getBookWithHighestRating(getBooks()));
 
         System.out.println(getTotalRevenueGenerated(getOrders()));
+
+        System.out.println(getSumOfSquares(getAListOfIntegers(1, 10)));
+    }
+
+    /**
+     * Given a list of integers, find the sum of the squares of all even numbers.
+     *
+     * @return
+     */
+    public static Integer getSumOfSquares(List<Integer> numbers) {
+
+        return numbers.stream()
+                .filter(number -> number % 2 == 0)
+                .mapToInt(num -> num * num)
+                .sum();
+    }
+
+    private static List<Integer> getAListOfIntegers(int start, int end) {
+        return IntStream.rangeClosed(start, end)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     /**
