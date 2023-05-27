@@ -51,6 +51,22 @@ public class StreamProblems2 {
         System.out.println(getAverageSalary(getEmployees()));
 
         System.out.println(getProductOfNumbers(asList(5, 10, 15, 20, 25)));
+
+        System.out.println(getAverageLengthOfNames(getEmployees()));
+    }
+
+    /**
+     * Find the average length of the names of all employees whose salary is above $50,000.
+     * @param employees
+     * @return
+     */
+    public static Double getAverageLengthOfNames(List<Employee> employees){
+
+        return employees.stream()
+                .filter(employee -> employee.getSalary() > 50000)
+                .mapToDouble(employee -> employee.getName().length())
+                .average()
+                .orElse(0.0);
     }
 
     /**
@@ -71,11 +87,11 @@ public class StreamProblems2 {
     }
 
     private static List<Employee> getEmployees() {
-        return List.of(new Employee("Treasury", 4),
-                new Employee("Engineering", 10),
-                new Employee("Engineering", 100),
-                new Employee("HR", 3),
-                new Employee("HR", 1));
+        return List.of(new Employee("Treasury", 4, "John"),
+                new Employee("Engineering", 10, "Sarah"),
+                new Employee("Engineering", 500000, "Phoebe" ),
+                new Employee("HR", 3, "Daniel"),
+                new Employee("HR", 100000, "David"));
     }
 
     /**

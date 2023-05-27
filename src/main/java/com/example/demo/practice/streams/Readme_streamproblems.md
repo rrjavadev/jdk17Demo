@@ -18,7 +18,7 @@
 
 10. Given a list of numbers, find the product of all numbers greater than 10.
 
-Find the average length of the names of all employees whose salary is above $50,000.
+11. Find the average length of the names of all employees whose salary is above $50,000.
 
 Given a list of integers, find the product of all distinct even numbers.
 

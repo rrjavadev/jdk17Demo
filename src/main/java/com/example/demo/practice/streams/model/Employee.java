@@ -9,4 +9,5 @@ public class Employee {
 
     String department;
     double salary;
+    String name;
 }
