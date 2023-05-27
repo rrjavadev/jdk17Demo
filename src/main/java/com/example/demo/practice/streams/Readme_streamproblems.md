@@ -16,7 +16,7 @@
 
 9. Given a list of employees, group them by department and calculate the average salary for each department.
 
-Given a list of numbers, find the product of all numbers greater than 10.
+10. Given a list of numbers, find the product of all numbers greater than 10.
 
 Find the average length of the names of all employees whose salary is above $50,000.
 

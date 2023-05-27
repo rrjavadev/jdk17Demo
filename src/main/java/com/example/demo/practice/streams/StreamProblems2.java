@@ -9,7 +9,6 @@ import com.example.demo.practice.streams.model.Transaction;
 
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Map;
@@ -20,14 +19,12 @@ import java.util.stream.IntStream;
 
 import static java.lang.String.valueOf;
 import static java.time.Duration.ofDays;
+import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
 import static java.util.Currency.getInstance;
 import static java.util.stream.Collectors.averagingDouble;
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.summingDouble;
 
@@ -52,6 +49,19 @@ public class StreamProblems2 {
         System.out.println(getTopNProducts(getProducts(), 3));
 
         System.out.println(getAverageSalary(getEmployees()));
+
+        System.out.println(getProductOfNumbers(asList(5, 10, 15, 20, 25)));
+    }
+
+    /**
+     * Given a list of numbers, find the product of all numbers greater than 10.
+     *
+     * @return
+     */
+    public static Integer getProductOfNumbers(List<Integer> numbers){
+       return numbers.stream()
+                .filter(number -> number > 10)
+                .reduce(1, (t, e) -> t * e);
     }
 
     private static List<Product> getProducts() {
@@ -128,7 +138,7 @@ public class StreamProblems2 {
     }
 
     private static List<Order> getOrders() {
-        return Arrays.asList(
+        return asList(
                 new Order(6, Instant.parse("2023-05-24T10:15:30.00Z")),
                 new Order(5, Instant.parse("2023-05-26T10:15:30.00Z")),
                 new Order(4.0, Instant.parse("2023-05-20T10:15:30.00Z")),
@@ -151,14 +161,14 @@ public class StreamProblems2 {
     }
 
     private static List<Book> getBooks() {
-        return Arrays.asList(new Book("book 1", "Author 1", 1),
+        return asList(new Book("book 1", "Author 1", 1),
                 new Book("book 2", "Author 2", 1),
                 new Book("book 3", "Author 3", 5),
                 new Book("book 4", "Author 4", 2));
     }
 
     public static List<String> getWords() {
-        return Arrays.asList("apple", "banana", "orange", "kiwi", "elephant", "ant", "ant-eater", "elephant");
+        return asList("apple", "banana", "orange", "kiwi", "elephant", "ant", "ant-eater", "elephant");
     }
 
     public static List<Person> getPeople() {
@@ -173,7 +183,7 @@ public class StreamProblems2 {
     }
 
     public static List<Transaction> getTransactions() {
-        return Arrays.asList(
+        return asList(
                 new Transaction(getInstance("GBP"), 100.50),
                 new Transaction(getInstance("EUR"), 75.25),
                 new Transaction(getInstance("USD"), 50.75),
