@@ -20,7 +20,7 @@
 
 11. Find the average length of the names of all employees whose salary is above $50,000.
 
-Given a list of integers, find the product of all distinct even numbers.
+12. Given a list of integers, find the product of all distinct even numbers.
 
 Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
 

@@ -53,6 +53,20 @@ public class StreamProblems2 {
         System.out.println(getProductOfNumbers(asList(5, 10, 15, 20, 25)));
 
         System.out.println(getAverageLengthOfNames(getEmployees()));
+
+        System.out.println(getProductOfAllDistinctEvenNumbers(asList(1, 2, 3, 4, 4, 7)));
+    }
+
+    /**
+     * Given a list of integers, find the product of all distinct even numbers.
+     */
+
+    public static Integer getProductOfAllDistinctEvenNumbers(List<Integer> integers){
+
+        return integers.stream()
+                .distinct()
+                .filter(number -> number % 2 == 0)
+                .reduce(1, (t, number) -> t * number);
     }
 
     /**
