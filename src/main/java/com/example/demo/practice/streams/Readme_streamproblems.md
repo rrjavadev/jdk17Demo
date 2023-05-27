@@ -24,7 +24,7 @@
 
 13. Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
 
-Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
+14. Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
 
 Given a list of objects with properties "name" and "age," group the objects by age and find the average age for each group.
 

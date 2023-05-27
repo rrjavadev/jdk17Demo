@@ -26,6 +26,7 @@ import static java.util.stream.Collectors.averagingDouble;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.summingDouble;
 import static java.util.stream.Collectors.toMap;
 
@@ -60,12 +61,23 @@ public class StreamProblems2 {
         System.out.println(getCountOfWordsInInt(getWords()));
 
         System.out.println(getCountOfWords(getWords()));
+
+        System.out.println(getTotalSumOfTransactionAmounts(getTransactions()));
     }
 
     /**
-         * Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
+     * Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
      */
-    public static Map<String, Long> getCountOfWords(List<String> strings){
+    public static Map<Long, Double> getTotalSumOfTransactionAmounts(List<Transaction> transactions) {
+
+        return transactions.stream()
+                .collect(groupingBy(Transaction::getCustomerId, summingDouble(Transaction::getAmount)));
+    }
+
+    /**
+     * Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
+     */
+    public static Map<String, Long> getCountOfWords(List<String> strings) {
         return strings.stream()
                 .collect(groupingBy(word -> word, counting()));
     }
@@ -73,7 +85,7 @@ public class StreamProblems2 {
     /**
      * Given a list of strings, count the number of occurrences of each unique word and store the result in a map of integers.
      */
-    public static Map<String, Integer> getCountOfWordsInInt(List<String> strings){
+    public static Map<String, Integer> getCountOfWordsInInt(List<String> strings) {
 
         return strings.stream()
                 .collect(groupingBy(word -> word, Collectors.summingInt(count -> 1)));
@@ -83,7 +95,7 @@ public class StreamProblems2 {
      * Given a list of integers, find the product of all distinct even numbers.
      */
 
-    public static Integer getProductOfAllDistinctEvenNumbers(List<Integer> integers){
+    public static Integer getProductOfAllDistinctEvenNumbers(List<Integer> integers) {
 
         return integers.stream()
                 .distinct()
@@ -93,10 +105,11 @@ public class StreamProblems2 {
 
     /**
      * Find the average length of the names of all employees whose salary is above $50,000.
+     *
      * @param employees
      * @return
      */
-    public static Double getAverageLengthOfNames(List<Employee> employees){
+    public static Double getAverageLengthOfNames(List<Employee> employees) {
 
         return employees.stream()
                 .filter(employee -> employee.getSalary() > 50000)
@@ -110,8 +123,8 @@ public class StreamProblems2 {
      *
      * @return
      */
-    public static Integer getProductOfNumbers(List<Integer> numbers){
-       return numbers.stream()
+    public static Integer getProductOfNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .filter(number -> number > 10)
                 .reduce(1, (t, e) -> t * e);
     }
@@ -125,16 +138,17 @@ public class StreamProblems2 {
     private static List<Employee> getEmployees() {
         return List.of(new Employee("Treasury", 4, "John"),
                 new Employee("Engineering", 10, "Sarah"),
-                new Employee("Engineering", 500000, "Phoebe" ),
+                new Employee("Engineering", 500000, "Phoebe"),
                 new Employee("HR", 3, "Daniel"),
                 new Employee("HR", 100000, "David"));
     }
 
     /**
      * Given a list of employees, group them by department and calculate the average salary for each department.
+     *
      * @return
      */
-    public static Map<String, Double> getAverageSalary(List<Employee> employees){
+    public static Map<String, Double> getAverageSalary(List<Employee> employees) {
         return employees.stream()
                 .collect(groupingBy(Employee::getDepartment, averagingDouble(Employee::getSalary)));
     }
@@ -236,11 +250,12 @@ public class StreamProblems2 {
 
     public static List<Transaction> getTransactions() {
         return asList(
-                new Transaction(getInstance("GBP"), 100.50),
-                new Transaction(getInstance("EUR"), 75.25),
-                new Transaction(getInstance("USD"), 50.75),
-                new Transaction(getInstance("GBP"), 150.00),
-                new Transaction(getInstance("EUR"), 125.50)
+                new Transaction(1234L, getInstance("GBP"), 100.50),
+                new Transaction(1234L, getInstance("GBP"), 100),
+                new Transaction(1235L, getInstance("EUR"), 75.25),
+                new Transaction(3458L, getInstance("USD"), 50.75),
+                new Transaction(32333L, getInstance("GBP"), 150.00),
+                new Transaction(1237L, getInstance("EUR"), 125.50)
         );
     }
 
