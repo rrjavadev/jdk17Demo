@@ -22,7 +22,7 @@
 
 12. Given a list of integers, find the product of all distinct even numbers.
 
-Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
+13. Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
 
 Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
 

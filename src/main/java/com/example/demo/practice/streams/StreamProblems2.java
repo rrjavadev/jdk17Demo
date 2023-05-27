@@ -27,6 +27,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.summingDouble;
+import static java.util.stream.Collectors.toMap;
 
 public class StreamProblems2 {
 
@@ -55,6 +56,27 @@ public class StreamProblems2 {
         System.out.println(getAverageLengthOfNames(getEmployees()));
 
         System.out.println(getProductOfAllDistinctEvenNumbers(asList(1, 2, 3, 4, 4, 7)));
+
+        System.out.println(getCountOfWordsInInt(getWords()));
+
+        System.out.println(getCountOfWords(getWords()));
+    }
+
+    /**
+         * Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
+     */
+    public static Map<String, Long> getCountOfWords(List<String> strings){
+        return strings.stream()
+                .collect(groupingBy(word -> word, counting()));
+    }
+
+    /**
+     * Given a list of strings, count the number of occurrences of each unique word and store the result in a map of integers.
+     */
+    public static Map<String, Integer> getCountOfWordsInInt(List<String> strings){
+
+        return strings.stream()
+                .collect(groupingBy(word -> word, Collectors.summingInt(count -> 1)));
     }
 
     /**
