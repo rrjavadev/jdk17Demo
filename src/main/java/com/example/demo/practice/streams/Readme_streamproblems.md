@@ -14,7 +14,7 @@
 
 8. Given a list of products, find the top 3 products with the highest prices.
 
-Given a list of employees, group them by department and calculate the average salary for each department.
+9. Given a list of employees, group them by department and calculate the average salary for each department.
 
 Given a list of numbers, find the product of all numbers greater than 10.
 

@@ -2,6 +2,7 @@ package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
 import com.example.demo.practice.streams.model.Book;
+import com.example.demo.practice.streams.model.Employee;
 import com.example.demo.practice.streams.model.Order;
 import com.example.demo.practice.streams.model.Product;
 import com.example.demo.practice.streams.model.Transaction;
@@ -21,10 +22,12 @@ import static java.lang.String.valueOf;
 import static java.time.Duration.ofDays;
 import static java.util.Comparator.comparing;
 import static java.util.Currency.getInstance;
+import static java.util.stream.Collectors.averagingDouble;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.summingDouble;
 
@@ -47,12 +50,31 @@ public class StreamProblems2 {
         System.out.println(getNumberOfOccurrencesOfEachDistinctWordAndCount(getWords()));
 
         System.out.println(getTopNProducts(getProducts(), 3));
+
+        System.out.println(getAverageSalary(getEmployees()));
     }
 
     private static List<Product> getProducts() {
         return List.of(new Product("Apple", 4),
                 new Product("Orange", 10),
                 new Product("Cucumber", 1));
+    }
+
+    private static List<Employee> getEmployees() {
+        return List.of(new Employee("Treasury", 4),
+                new Employee("Engineering", 10),
+                new Employee("Engineering", 100),
+                new Employee("HR", 3),
+                new Employee("HR", 1));
+    }
+
+    /**
+     * Given a list of employees, group them by department and calculate the average salary for each department.
+     * @return
+     */
+    public static Map<String, Double> getAverageSalary(List<Employee> employees){
+        return employees.stream()
+                .collect(groupingBy(Employee::getDepartment, averagingDouble(Employee::getSalary)));
     }
 
     /**
