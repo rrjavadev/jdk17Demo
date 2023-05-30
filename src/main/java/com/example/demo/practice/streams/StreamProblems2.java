@@ -9,6 +9,7 @@ import com.example.demo.practice.streams.model.Transaction;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +67,19 @@ public class StreamProblems2 {
         System.out.println(getTotalSumOfTransactionAmounts(getTransactions()));
 
         System.out.println(getAverageAgeGroupByAge(getPeople()));
+
+        System.out.println(getLongestStringsDesc(Arrays.asList("anc", "pghjjj", "hhdhdsfdfddsf", "'jjjjjj", "dfdfdsfdsdfds")));
+    }
+
+    /**
+     * Given a list of strings, find the three longest strings in descending order of length.
+     */
+    public static List<String> getLongestStringsDesc(List<String> string){
+        return string.stream()
+                .sorted(Comparator.comparingInt(String::length)
+                        .reversed())
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
     /**

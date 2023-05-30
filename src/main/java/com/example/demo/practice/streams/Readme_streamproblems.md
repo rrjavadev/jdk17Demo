@@ -28,7 +28,7 @@
 
 15. Given a list of objects with properties "name" and "age," group the objects by age and find the average age for each group.
 
-Given a list of strings, find the three longest strings in descending order of length.
+16. Given a list of strings, find the three longest strings in descending order of length.
 
 Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
 
