@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -73,6 +74,18 @@ public class StreamProblems2 {
         System.out.println(getLargestSquareNumber(IntStream.rangeClosed(1, 1000).boxed().toList()));
 
         System.out.println(getVowelsInAlphabeticalOrder(getWords()));
+
+        System.out.println(getIntegersSortedAndDuplicatesRemoved(asList(1, 2, 3, 4, 4, 7)));
+    }
+
+    /**
+     * Given a list of integers, remove all duplicates and sort the remaining numbers in descending order.
+     */
+    public static List<Integer> getIntegersSortedAndDuplicatesRemoved(List<Integer> integers) {
+        return integers.stream()
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .toList();
     }
 
     /**

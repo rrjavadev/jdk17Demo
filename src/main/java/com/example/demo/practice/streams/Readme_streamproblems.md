@@ -34,6 +34,6 @@
 
 18. Given a list of strings, filter out the strings that start with a vowel and have more than three characters, and then sort them in alphabetical order.
 
-Given a list of integers, remove all duplicates and sort the remaining numbers in descending order.
+19. Given a list of integers, remove all duplicates and sort the remaining numbers in descending order.
 
 Given a list of strings, find the shortest string that contains all vowels (a, e, i, o, u) at least once.
