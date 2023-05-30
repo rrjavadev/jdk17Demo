@@ -36,4 +36,4 @@
 
 19. Given a list of integers, remove all duplicates and sort the remaining numbers in descending order.
 
-Given a list of strings, find the shortest string that contains all vowels (a, e, i, o, u) at least once.
+20. Given a list of strings, find the shortest string that contains all vowels (a, e, i, o, u) at least once.

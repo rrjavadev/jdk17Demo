@@ -23,6 +23,7 @@ import static java.lang.String.valueOf;
 import static java.time.Duration.ofDays;
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingDouble;
 import static java.util.Currency.getInstance;
 import static java.util.stream.Collectors.averagingDouble;
 import static java.util.stream.Collectors.averagingInt;
@@ -76,6 +77,27 @@ public class StreamProblems2 {
         System.out.println(getVowelsInAlphabeticalOrder(getWords()));
 
         System.out.println(getIntegersSortedAndDuplicatesRemoved(asList(1, 2, 3, 4, 4, 7)));
+
+        System.out.println(getShortedStringContainingAllVowelsAtLeastOnce(Arrays.asList("add", "f", "a,r,e,i,, o,u", "aeiou")));
+    }
+
+    /**
+     * Given a list of strings, find the shortest string that contains all vowels (a, e, i, o, u) at least once.
+     */
+    public static String getShortedStringContainingAllVowelsAtLeastOnce(List<String> strings) {
+
+        return strings.stream()
+                .filter(StreamProblems2::hasAllVowels)
+                .min(Comparator.naturalOrder()) // or .min(Comparator.comparingInt(String::length));
+                .orElse("");
+    }
+
+    private static boolean hasAllVowels(String string) {
+        return string.toLowerCase().contains("a")
+                && string.toLowerCase().contains("e")
+                && string.toLowerCase().contains("i")
+                && string.toLowerCase().contains("o")
+                && string.toLowerCase().contains("u");
     }
 
     /**
