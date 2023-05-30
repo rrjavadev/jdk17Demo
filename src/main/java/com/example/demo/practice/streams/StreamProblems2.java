@@ -69,7 +69,20 @@ public class StreamProblems2 {
         System.out.println(getAverageAgeGroupByAge(getPeople()));
 
         System.out.println(getLongestStringsDesc(Arrays.asList("anc", "pghjjj", "hhdhdsfdfddsf", "'jjjjjj", "dfdfdsfdsdfds")));
+
+        System.out.println(getLargestSquareNumber(IntStream.rangeClosed(1, 1000).boxed().toList()));
     }
+
+    /**
+     * Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
+     */
+    public static Integer getLargestSquareNumber(List<Integer> integers){
+        return integers.stream()
+                .filter(number -> (Math.sqrt(number)) % 1 == 0 && number < 1000)
+                .max(Comparator.naturalOrder())
+                .orElse(0);
+    }
+
 
     /**
      * Given a list of strings, find the three longest strings in descending order of length.

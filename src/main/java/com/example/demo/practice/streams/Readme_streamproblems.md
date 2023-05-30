@@ -30,7 +30,7 @@
 
 16. Given a list of strings, find the three longest strings in descending order of length.
 
-Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
+17. Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
 
 Given a list of strings, filter out the strings that start with a vowel and have more than three characters, and then sort them in alphabetical order.
 
