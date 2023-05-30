@@ -71,12 +71,28 @@ public class StreamProblems2 {
         System.out.println(getLongestStringsDesc(Arrays.asList("anc", "pghjjj", "hhdhdsfdfddsf", "'jjjjjj", "dfdfdsfdsdfds")));
 
         System.out.println(getLargestSquareNumber(IntStream.rangeClosed(1, 1000).boxed().toList()));
+
+        System.out.println(getVowelsInAlphabeticalOrder(getWords()));
     }
+
+    /**
+     * Given a list of strings, filter out the strings that start with a vowel and
+     * have more than three characters, and then sort them in alphabetical order.
+     */
+    public static List<String> getVowelsInAlphabeticalOrder(List<String> strings) {
+
+        return strings.stream()
+                .filter(string -> string.length() > 3)
+                .filter(string -> "aeiou".contains(valueOf(string.charAt(0))))
+                .sorted()
+                .toList();
+    }
+
 
     /**
      * Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
      */
-    public static Integer getLargestSquareNumber(List<Integer> integers){
+    public static Integer getLargestSquareNumber(List<Integer> integers) {
         return integers.stream()
                 .filter(number -> (Math.sqrt(number)) % 1 == 0 && number < 1000)
                 .max(Comparator.naturalOrder())
@@ -87,7 +103,7 @@ public class StreamProblems2 {
     /**
      * Given a list of strings, find the three longest strings in descending order of length.
      */
-    public static List<String> getLongestStringsDesc(List<String> string){
+    public static List<String> getLongestStringsDesc(List<String> string) {
         return string.stream()
                 .sorted(Comparator.comparingInt(String::length)
                         .reversed())
@@ -99,7 +115,7 @@ public class StreamProblems2 {
      * Given a list of objects with properties "name" and "age," group the objects by age
      * and find the average age for each group.
      */
-    public static Map<Integer, Double> getAverageAgeGroupByAge(List<Person> people){
+    public static Map<Integer, Double> getAverageAgeGroupByAge(List<Person> people) {
         return people.stream()
                 .collect(groupingBy(Person::age, averagingDouble(Person::age)));
     }
