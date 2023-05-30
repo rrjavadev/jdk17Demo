@@ -26,7 +26,7 @@
 
 14. Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
 
-Given a list of objects with properties "name" and "age," group the objects by age and find the average age for each group.
+15. Given a list of objects with properties "name" and "age," group the objects by age and find the average age for each group.
 
 Given a list of strings, find the three longest strings in descending order of length.
 

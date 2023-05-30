@@ -23,6 +23,7 @@ import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
 import static java.util.Currency.getInstance;
 import static java.util.stream.Collectors.averagingDouble;
+import static java.util.stream.Collectors.averagingInt;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
@@ -63,6 +64,17 @@ public class StreamProblems2 {
         System.out.println(getCountOfWords(getWords()));
 
         System.out.println(getTotalSumOfTransactionAmounts(getTransactions()));
+
+        System.out.println(getAverageAgeGroupByAge(getPeople()));
+    }
+
+    /**
+     * Given a list of objects with properties "name" and "age," group the objects by age
+     * and find the average age for each group.
+     */
+    public static Map<Integer, Double> getAverageAgeGroupByAge(List<Person> people){
+        return people.stream()
+                .collect(groupingBy(Person::age, averagingDouble(Person::age)));
     }
 
     /**
