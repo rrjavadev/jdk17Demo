@@ -1,21 +1,31 @@
 package com.example.demo.practice.streams;
 
+import com.example.demo.model.Employee;
+import com.example.demo.model.LineItem;
+import com.example.demo.model.Order;
 import com.example.demo.model.Person;
+import com.example.demo.model.Transaction;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.filtering;
+import static java.util.stream.Collectors.flatMapping;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public class MainClass {
     public static void main(String[] args) {
@@ -54,6 +64,8 @@ public class MainClass {
         System.out.println(firstEvenNumber());
 
         System.out.println(getCountOfAllNumbers(Arrays.asList(1, 3, 5)));
+
+        System.out.println(longestWordThatStartsWithAVowel(List.of("Addbbbs", "E", "Add")));
     }
 
     public static List<Person> getPeople() {
@@ -124,7 +136,6 @@ public class MainClass {
 
         return IntStream.rangeClosed(1, 10)
                 .filter(e -> e % 2 == 0)
-                .map(e -> e * 2)
                 .findFirst()
                 .orElse(0);
     }
@@ -133,6 +144,43 @@ public class MainClass {
         return getPeople().stream()
                 .filter(e -> e.name().toUpperCase().startsWith("A"))
                 .count();
+    }
+
+    public static Map<String, Double> averageSalaryByDepartment(List<Employee> employees) {
+
+        return employees.stream()
+                .collect(Collectors.groupingBy(Employee::department, Collectors.averagingDouble(Employee::salary)));
+    }
+
+    public static Map<String, Set<LineItem>> itemsByCustomerName(List<Order> orders) {
+        return orders.stream()
+                .collect(groupingBy(Order::customerName, flatMapping(e -> e.lineItems().stream(), toSet())));
+    }
+
+    public static int productOfAllNumbersGreaterThan10(List<Integer> numbers) {
+        return numbers.stream()
+                .collect(filtering(e -> e > 10, reducing(1, (m1, m2) -> m1 * m2)));
+
+//        numbers.stream()
+//                .filter(e -> e > 10)
+//                .reduce(1, (m1, m2) -> m1 * m2);
+    }
+
+    public static List<LineItem> topThreeProductsWithHighestPrice(List<LineItem> lineItems) {
+        return lineItems.stream()
+                .sorted(Comparator.comparingDouble(LineItem::pricePerUnit).reversed())
+                .limit(3)
+                .toList();
+    }
+
+    public static Map<String, Long> countOfAllDistinctWords(List<String> words) {
+        return words.stream()
+                .collect(groupingBy(e -> e, counting()));
+    }
+
+    public static  Map<String, Double> totalSumOfTransactionsOfADistinctCurrency(List<Transaction> transactions) {
+        return transactions.stream()
+                .collect(groupingBy(Transaction::currency, Collectors.summingDouble(Transaction::amount)));
     }
 
     private List<String> removeAllEmptyStrings(List<String> strings){
@@ -163,6 +211,10 @@ public class MainClass {
     private static Integer getCountOfAllNumbers(List<Integer> numbers){
         return numbers.stream()
                 .reduce(0, Integer::sum);
+
+//        return numbers.stream()
+//                .mapToInt(e -> e)
+//                .sum();
     }
 
     private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers){
@@ -170,5 +222,26 @@ public class MainClass {
         return numbers.stream()
                 .mapToInt(e -> e)
                 .summaryStatistics();
+    }
+
+    private static Double getAverageAgeOFAllEmployees(List <Person> people) {
+        return people.stream()
+                .mapToInt(Person::age)
+                .average()
+                .orElse(0.0);
+    }
+
+    public static String longestWordThatStartsWithAVowel(List<String> strings) {
+        return strings.stream()
+                .filter(string -> nonNull(string) && doesStartWithVowel(string))
+                .max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+                .orElse("No word found that starts with a vowel");
+    }
+
+    private static boolean doesStartWithVowel(String string) {
+        return switch (string.substring(0, 1).toLowerCase()) {
+            case "a", "e", "i", "o", "u" -> true;
+            default -> false;
+        };
     }
 }
