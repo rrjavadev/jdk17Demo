@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MainClassTest {
+class StreamProblems1Test {
 
     @Test
     void longestWordThatStartsWithAVowel() {
@@ -21,7 +21,7 @@ class MainClassTest {
         List<String> words = List.of("apple", "banana", "orange", "umbrella","coffee", "elephant");
 
         //When
-        String result = MainClass.longestWordThatStartsWithAVowel(words);
+        String result = StreamProblems1.longestWordThatStartsWithAVowel(words);
 
         //Then
         assertThat(result).isEqualTo("umbrella");
@@ -38,7 +38,7 @@ class MainClassTest {
         );
 
         //When
-        Map<String, Double> averageSalary = MainClass.averageSalaryByDepartment(employees);
+        Map<String, Double> averageSalary = StreamProblems1.averageSalaryByDepartment(employees);
 
         //Then
         assertThat(averageSalary).isEqualTo(Map.of("Engineering", 75000.0, "HR", 55000.0));
@@ -47,7 +47,7 @@ class MainClassTest {
     @Test
     void itemsByCustomerName(){
         //Given
-        Map<String, Set<LineItem>> itemsByCustomerName = MainClass.itemsByCustomerName(List.of(new Order("Rosh",
+        Map<String, Set<LineItem>> itemsByCustomerName = StreamProblems1.itemsByCustomerName(List.of(new Order("Rosh",
                 Set.of(new LineItem("apple", 1, 1.5)))));
 
         //Then
@@ -61,7 +61,7 @@ class MainClassTest {
         List<Integer> numbers = List.of(5, 12, 15, 8, 20, 3);
 
         //When
-        int product = MainClass.productOfAllNumbersGreaterThan10(numbers);
+        int product = StreamProblems1.productOfAllNumbersGreaterThan10(numbers);
 
         //Then
         assertThat(product).isEqualTo(3600); // 12 * 15 * 20 = 3600
@@ -78,7 +78,7 @@ class MainClassTest {
         );
 
         // When
-        List<LineItem> topProducts = MainClass.topThreeProductsWithHighestPrice(lineItems);
+        List<LineItem> topProducts = StreamProblems1.topThreeProductsWithHighestPrice(lineItems);
 
         // Then
         assertThat(topProducts).hasSize(3);
@@ -96,7 +96,7 @@ class MainClassTest {
         List<String> words = List.of("apple", "banana", "apple", "orange", "banana", "apple");
 
         // When
-        Map<String, Long> wordCount = MainClass.countOfAllDistinctWords(words);
+        Map<String, Long> wordCount = StreamProblems1.countOfAllDistinctWords(words);
 
         // Then
         assertThat(wordCount).isEqualTo(Map.of("apple", 3L, "banana", 2L, "orange", 1L));
@@ -115,7 +115,7 @@ class MainClassTest {
 
 
         // When
-        Map<String, Double> totalSum = MainClass.totalSumOfTransactionsOfADistinctCurrency(transactions);
+        Map<String, Double> totalSum = StreamProblems1.totalSumOfTransactionsOfADistinctCurrency(transactions);
 
         // Then
         assertThat(totalSum).isEqualTo(Map.of("EUR", 3.0, "USD", 5.0)); // 1.5 + (2 * 0.5) + (3 * 2.0)

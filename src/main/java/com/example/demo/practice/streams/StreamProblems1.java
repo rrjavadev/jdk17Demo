@@ -15,7 +15,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.util.Currency.getInstance;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
@@ -147,104 +146,105 @@ public class StreamProblems1 {
                 .count();
     }
 
-    private List<String> removeAllEmptyStrings(List<String> strings) {
-    public static Map<String, Double> averageSalaryByDepartment(List<Employee> employees) {
+        public static Map<String, Double> averageSalaryByDepartment (List < Employee > employees) {
 
-        return employees.stream()
-                .collect(Collectors.groupingBy(Employee::department, Collectors.averagingDouble(Employee::salary)));
-    }
+            return employees.stream()
+                    .collect(Collectors.groupingBy(Employee::department, Collectors.averagingDouble(Employee::salary)));
+        }
 
-    public static Map<String, Set<LineItem>> itemsByCustomerName(List<Order> orders) {
-        return orders.stream()
-                .collect(groupingBy(Order::customerName, flatMapping(e -> e.lineItems().stream(), toSet())));
-    }
+        public static Map<String, Set<LineItem>> itemsByCustomerName (List < Order > orders) {
+            return orders.stream()
+                    .collect(groupingBy(Order::customerName, flatMapping(e -> e.lineItems().stream(), toSet())));
+        }
 
-    public static int productOfAllNumbersGreaterThan10(List<Integer> numbers) {
-        return numbers.stream()
-                .collect(filtering(e -> e > 10, reducing(1, (m1, m2) -> m1 * m2)));
+        public static int productOfAllNumbersGreaterThan10 (List < Integer > numbers) {
+            return numbers.stream()
+                    .collect(filtering(e -> e > 10, reducing(1, (m1, m2) -> m1 * m2)));
 
 //        numbers.stream()
 //                .filter(e -> e > 10)
 //                .reduce(1, (m1, m2) -> m1 * m2);
-    }
+        }
 
-    public static List<LineItem> topThreeProductsWithHighestPrice(List<LineItem> lineItems) {
-        return lineItems.stream()
-                .sorted(Comparator.comparingDouble(LineItem::pricePerUnit).reversed())
-                .limit(3)
-                .toList();
-    }
+        public static List<LineItem> topThreeProductsWithHighestPrice (List < LineItem > lineItems) {
+            return lineItems.stream()
+                    .sorted(Comparator.comparingDouble(LineItem::pricePerUnit).reversed())
+                    .limit(3)
+                    .toList();
+        }
 
-    public static Map<String, Long> countOfAllDistinctWords(List<String> words) {
-        return words.stream()
-                .collect(groupingBy(e -> e, counting()));
-    }
+        public static Map<String, Long> countOfAllDistinctWords (List < String > words) {
+            return words.stream()
+                    .collect(groupingBy(e -> e, counting()));
+        }
 
-    public static  Map<String, Double> totalSumOfTransactionsOfADistinctCurrency(List<Transaction> transactions) {
-        return transactions.stream()
-                .collect(groupingBy(Transaction::currency, Collectors.summingDouble(Transaction::amount)));
-    }
+        public static Map<String, Double> totalSumOfTransactionsOfADistinctCurrency (List < Transaction > transactions)
+        {
+            return transactions.stream()
+                    .collect(groupingBy(Transaction::currency, Collectors.summingDouble(Transaction::amount)));
+        }
 
-    private List<String> removeAllEmptyStrings(List<String> strings){
-        return strings.stream()
-                .filter(s -> nonNull(s) && s.isEmpty())
-                .collect(toList());
-    }
+        private List<String> removeAllEmptyStrings (List < String > strings) {
+            return strings.stream()
+                    .filter(s -> nonNull(s) && s.isEmpty())
+                    .collect(toList());
+        }
 
-    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings) {
-        return strings.stream()
-                .filter(e -> nonNull(e) && e.length() > 2)
-                .collect(toList());
-    }
+        private List<String> createAListWithStringMoreThanTwoCharacters (List < String > strings) {
+            return strings.stream()
+                    .filter(e -> nonNull(e) && e.length() > 2)
+                    .collect(toList());
+        }
 
-    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings) {
-        return strings.stream()
-                .map(String::toUpperCase)
-                .collect(Collectors.joining(","));
-    }
+        private String convertListOfStringsToUppercaseAndJoinThenWithComma (List < String > strings) {
+            return strings.stream()
+                    .map(String::toUpperCase)
+                    .collect(Collectors.joining(","));
+        }
 
-    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers) {
+        private List<Integer> createAListOfSquareOfAllDistinctNumbers (List < Integer > numbers) {
 
-        return numbers.stream()
-                .distinct()
-                .map(e -> e * e)
-                .collect(toList());
-    }
+            return numbers.stream()
+                    .distinct()
+                    .map(e -> e * e)
+                    .collect(toList());
+        }
 
-    private static Integer getCountOfAllNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .reduce(0, Integer::sum);
+        private static Integer getCountOfAllNumbers (List < Integer > numbers) {
+            return numbers.stream()
+                    .reduce(0, Integer::sum);
 
 //        return numbers.stream()
 //                .mapToInt(e -> e)
 //                .sum();
-    }
+        }
 
-    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers) {
+        private static IntSummaryStatistics getSummaryStatistics (List < Integer > numbers) {
 
-        return numbers.stream()
-                .mapToInt(e -> e)
-                .summaryStatistics();
-    }
+            return numbers.stream()
+                    .mapToInt(e -> e)
+                    .summaryStatistics();
+        }
 
-    private static Double getAverageAgeOFAllEmployees(List <Person> people) {
-        return people.stream()
-                .mapToInt(Person::age)
-                .average()
-                .orElse(0.0);
-    }
+        private static Double getAverageAgeOFAllEmployees (List < Person > people) {
+            return people.stream()
+                    .mapToInt(Person::age)
+                    .average()
+                    .orElse(0.0);
+        }
 
-    public static String longestWordThatStartsWithAVowel(List<String> strings) {
-        return strings.stream()
-                .filter(string -> nonNull(string) && doesStartWithVowel(string))
-                .max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
-                .orElse("No word found that starts with a vowel");
-    }
+        public static String longestWordThatStartsWithAVowel (List < String > strings) {
+            return strings.stream()
+                    .filter(string -> nonNull(string) && doesStartWithVowel(string))
+                    .max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+                    .orElse("No word found that starts with a vowel");
+        }
 
-    private static boolean doesStartWithVowel(String string) {
-        return switch (string.substring(0, 1).toLowerCase()) {
-            case "a", "e", "i", "o", "u" -> true;
-            default -> false;
-        };
-    }
+        private static boolean doesStartWithVowel (String string){
+            return switch (string.substring(0, 1).toLowerCase()) {
+                case "a", "e", "i", "o", "u" -> true;
+                default -> false;
+            };
+        }
 }
+
