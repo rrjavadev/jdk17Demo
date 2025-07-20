@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.Currency.getInstance;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
@@ -27,7 +28,7 @@ import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
-public class MainClass {
+public class StreamProblems1 {
     public static void main(String[] args) {
 
         System.out.println(getOddAge());
@@ -126,7 +127,7 @@ public class MainClass {
         return IntStream.rangeClosed(0, number)
                 .boxed()
                 .parallel()
-                .filter(MainClass::isPrime)
+                .filter(StreamProblems1::isPrime)
                 .mapToDouble(e -> e)
                 .map(Math::sqrt)
                 .reduce(0.0, Double::sum);
@@ -146,6 +147,7 @@ public class MainClass {
                 .count();
     }
 
+    private List<String> removeAllEmptyStrings(List<String> strings) {
     public static Map<String, Double> averageSalaryByDepartment(List<Employee> employees) {
 
         return employees.stream()
@@ -188,19 +190,20 @@ public class MainClass {
                 .filter(s -> nonNull(s) && s.isEmpty())
                 .collect(toList());
     }
-    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings){
+
+    private List<String> createAListWithStringMoreThanTwoCharacters(List<String> strings) {
         return strings.stream()
-                .filter(e -> nonNull(e) && e.length() >2)
+                .filter(e -> nonNull(e) && e.length() > 2)
                 .collect(toList());
     }
 
-    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings){
+    private String convertListOfStringsToUppercaseAndJoinThenWithComma(List<String> strings) {
         return strings.stream()
                 .map(String::toUpperCase)
                 .collect(Collectors.joining(","));
     }
 
-    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers){
+    private List<Integer> createAListOfSquareOfAllDistinctNumbers(List<Integer> numbers) {
 
         return numbers.stream()
                 .distinct()
@@ -208,7 +211,7 @@ public class MainClass {
                 .collect(toList());
     }
 
-    private static Integer getCountOfAllNumbers(List<Integer> numbers){
+    private static Integer getCountOfAllNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .reduce(0, Integer::sum);
 
@@ -217,7 +220,7 @@ public class MainClass {
 //                .sum();
     }
 
-    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers){
+    private static IntSummaryStatistics getSummaryStatistics(List<Integer> numbers) {
 
         return numbers.stream()
                 .mapToInt(e -> e)
