@@ -1,3 +1,4 @@
+/*
 package com.example.demo.practice.streams;
 
 import com.example.demo.model.Person;
@@ -81,9 +82,11 @@ public class StreamProblems2 {
         System.out.println(getShortedStringContainingAllVowelsAtLeastOnce(Arrays.asList("add", "f", "a,r,e,i,, o,u", "aeiou")));
     }
 
-    /**
+    */
+/**
      * Given a list of strings, find the shortest string that contains all vowels (a, e, i, o, u) at least once.
-     */
+     *//*
+
     public static String getShortedStringContainingAllVowelsAtLeastOnce(List<String> strings) {
 
         return strings.stream()
@@ -100,9 +103,11 @@ public class StreamProblems2 {
                 && string.toLowerCase().contains("u");
     }
 
-    /**
+    */
+/**
      * Given a list of integers, remove all duplicates and sort the remaining numbers in descending order.
-     */
+     *//*
+
     public static List<Integer> getIntegersSortedAndDuplicatesRemoved(List<Integer> integers) {
         return integers.stream()
                 .distinct()
@@ -110,10 +115,12 @@ public class StreamProblems2 {
                 .toList();
     }
 
-    /**
+    */
+/**
      * Given a list of strings, filter out the strings that start with a vowel and
      * have more than three characters, and then sort them in alphabetical order.
-     */
+     *//*
+
     public static List<String> getVowelsInAlphabeticalOrder(List<String> strings) {
 
         return strings.stream()
@@ -124,9 +131,11 @@ public class StreamProblems2 {
     }
 
 
-    /**
+    */
+/**
      * Given a list of numbers, find the largest square number (a number that is a perfect square) less than 1000.
-     */
+     *//*
+
     public static Integer getLargestSquareNumber(List<Integer> integers) {
         return integers.stream()
                 .filter(number -> (Math.sqrt(number)) % 1 == 0 && number < 1000)
@@ -135,9 +144,11 @@ public class StreamProblems2 {
     }
 
 
-    /**
+    */
+/**
      * Given a list of strings, find the three longest strings in descending order of length.
-     */
+     *//*
+
     public static List<String> getLongestStringsDesc(List<String> string) {
         return string.stream()
                 .sorted(Comparator.comparingInt(String::length)
@@ -146,44 +157,54 @@ public class StreamProblems2 {
                 .collect(Collectors.toList());
     }
 
-    /**
+    */
+/**
      * Given a list of objects with properties "name" and "age," group the objects by age
      * and find the average age for each group.
-     */
+     *//*
+
     public static Map<Integer, Double> getAverageAgeGroupByAge(List<Person> people) {
         return people.stream()
                 .collect(groupingBy(Person::age, averagingDouble(Person::age)));
     }
 
-    /**
+    */
+/**
      * Given a list of transactions, find the total sum of the transaction amounts for each unique customer.
-     */
+     *//*
+
     public static Map<Long, Double> getTotalSumOfTransactionAmounts(List<Transaction> transactions) {
 
         return transactions.stream()
                 .collect(groupingBy(Transaction::getCustomerId, summingDouble(Transaction::getAmount)));
     }
 
-    /**
+    */
+/**
      * Given a list of strings, count the number of occurrences of each unique word and store the result in a map.
-     */
+     *//*
+
     public static Map<String, Long> getCountOfWords(List<String> strings) {
         return strings.stream()
                 .collect(groupingBy(word -> word, counting()));
     }
 
-    /**
+    */
+/**
      * Given a list of strings, count the number of occurrences of each unique word and store the result in a map of integers.
-     */
+     *//*
+
     public static Map<String, Integer> getCountOfWordsInInt(List<String> strings) {
 
         return strings.stream()
                 .collect(groupingBy(word -> word, Collectors.summingInt(count -> 1)));
     }
 
-    /**
+    */
+/**
      * Given a list of integers, find the product of all distinct even numbers.
-     */
+     *//*
+
 
     public static Integer getProductOfAllDistinctEvenNumbers(List<Integer> integers) {
 
@@ -193,12 +214,14 @@ public class StreamProblems2 {
                 .reduce(1, (t, number) -> t * number);
     }
 
-    /**
+    */
+/**
      * Find the average length of the names of all employees whose salary is above $50,000.
      *
      * @param employees
      * @return
-     */
+     *//*
+
     public static Double getAverageLengthOfNames(List<Employee> employees) {
 
         return employees.stream()
@@ -208,11 +231,13 @@ public class StreamProblems2 {
                 .orElse(0.0);
     }
 
-    /**
+    */
+/**
      * Given a list of numbers, find the product of all numbers greater than 10.
      *
      * @return
-     */
+     *//*
+
     public static Integer getProductOfNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(number -> number > 10)
@@ -233,19 +258,23 @@ public class StreamProblems2 {
                 new Employee("HR", 100000, "David"));
     }
 
-    /**
+    */
+/**
      * Given a list of employees, group them by department and calculate the average salary for each department.
      *
      * @return
-     */
+     *//*
+
     public static Map<String, Double> getAverageSalary(List<Employee> employees) {
         return employees.stream()
                 .collect(groupingBy(Employee::getDepartment, averagingDouble(Employee::getSalary)));
     }
 
-    /**
+    */
+/**
      * Given a list of products, find the top 3 products with the highest prices
-     */
+     *//*
+
     public static List<Product> getTopNProducts(List<Product> products, int maxSize) {
 
         return products.stream()
@@ -254,19 +283,23 @@ public class StreamProblems2 {
                 .collect(Collectors.toList());
     }
 
-    /**
+    */
+/**
      * Given a list of strings, find the number of occurrences of each distinct word and display the word along with its count.
-     */
+     *//*
+
     public static Map<String, Long> getNumberOfOccurrencesOfEachDistinctWordAndCount(List<String> words) {
         return words.stream()
                 .collect(groupingBy(Function.identity(), counting()));
     }
 
-    /**
+    */
+/**
      * Given a list of integers, find the sum of the squares of all even numbers.
      *
      * @return
-     */
+     *//*
+
     public static Integer getSumOfSquares(List<Integer> numbers) {
 
         return numbers.stream()
@@ -281,9 +314,11 @@ public class StreamProblems2 {
                 .collect(Collectors.toList());
     }
 
-    /**
+    */
+/**
      * Given a list of orders, find the total revenue generated by orders that were placed in the last 30 days
-     */
+     *//*
+
     public static Double getTotalRevenueGenerated(List<Order> orders, int days) {
 
         return orders.stream()
@@ -303,11 +338,13 @@ public class StreamProblems2 {
         );
     }
 
-    /**
+    */
+/**
      * Given a list of books, find the book with the highest rating and display its title and author.
      *
      * @return
-     */
+     *//*
+
     public static Book getBookWithHighestRating(List<Book> books) {
 
         return books.stream()
@@ -349,11 +386,13 @@ public class StreamProblems2 {
         );
     }
 
-    /**
+    */
+/**
      * Find the average age of all people in a list of Person objects.
      *
      * @return
-     */
+     *//*
+
     public static double getAverageAge(List<Person> people) {
 
         return people.stream()
@@ -362,11 +401,13 @@ public class StreamProblems2 {
                 .orElse(0);
     }
 
-    /**
+    */
+/**
      * Given a list of transactions, find the total sum of transactions for each distinct currency.
      *
      * @return
-     */
+     *//*
+
     public static Map<Currency, Double> getTotalSumOfTransactions(List<Transaction> transactions) {
 
         return transactions.stream()
@@ -374,11 +415,13 @@ public class StreamProblems2 {
 
     }
 
-    /**
+    */
+/**
      * Given a list of words, find the longest word that starts with a vowel.
      *
      * @return
-     */
+     *//*
+
     public static String getLongestWordStartingWithVowel(List<String> words) {
 
         return words.stream()
@@ -389,3 +432,4 @@ public class StreamProblems2 {
                 .orElse("Vowel not found!!");
     }
 }
+*/

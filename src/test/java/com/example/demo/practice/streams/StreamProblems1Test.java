@@ -121,4 +121,22 @@ class StreamProblems1Test {
         assertThat(totalSum).isEqualTo(Map.of("EUR", 3.0, "USD", 5.0)); // 1.5 + (2 * 0.5) + (3 * 2.0)
     }
 
+    @Test
+    void averageLengthOfNamesOfEmployeesWithSalaryAboveALimit(){
+
+        //Given
+        List<Employee> employees = List.of(
+                new Employee("Alice", "Engineering", 70000),
+                new Employee("Bob", "Engineering", 80000),
+                new Employee("Charlie", "HR", 60000),
+                new Employee("David", "HR", 40000)
+        );
+
+        //When
+        Double length = StreamProblems1.averageLengthOfNamesOfEmployeesWithSalaryAboveALimit(employees);
+
+        //Then
+        assertThat(length).isEqualTo(4.0); // (5 + 3) / 2 = 4.0, since only Alice and Bob have salaries above 60000
+    }
+
 }
